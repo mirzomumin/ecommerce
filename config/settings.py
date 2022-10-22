@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_simplejwt.token_blacklist',
     'drf_yasg',
+    'corsheaders',
 
     # My apps
     'product.apps.ProductConfig',
@@ -63,6 +64,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -143,7 +145,7 @@ STATIC_URL = 'static/'
 STATIC_ROOT = str(BASE_DIR.joinpath('static'))
 
 MEDIA_URL = 'media/'
-MEDIA_ROOT = BASE_DIR.joinpath('media')
+MEDIA_ROOT = str(BASE_DIR.joinpath('media'))
 
 
 # Default primary key field type
