@@ -1,10 +1,10 @@
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
-from user.models import CustomUser
-from .tasks import send_verification_email
+from .models import CustomUser
+from user.utils.email import send_html_mail
 
 @receiver(post_save, sender=CustomUser)
-def send_verification_email_to_user(sender, instance, created, **kwargs):
+def create_user_profile(sender, instance, created, **kwargs):
     if created:
-        send_verification_email.delay(instance.id)
+        send_html_mail(instance)
